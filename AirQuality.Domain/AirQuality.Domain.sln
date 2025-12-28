@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQuilty.Domain", "AirQuilty.Domain.csproj", "{344E63C9-9EB3-4B75-8582-F1D0415F76CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQuality.Application", "..\AirQuality.Application\AirQuality.Application.csproj", "{7007DC50-73DE-44EB-B4AF-EC4BD3EE8F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQuality.Infrastructure", "..\AirQuality.Infrastructure\AirQuality.Infrastructure.csproj", "{D5A66888-EC6F-4481-853C-B81119AFADCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQuality.Api", "..\AirQuality.Api\AirQuality.Api.csproj", "{D97DC4AC-DC6D-4256-9EF9-80A42D9AB31B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{344E63C9-9EB3-4B75-8582-F1D0415F76CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344E63C9-9EB3-4B75-8582-F1D0415F76CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344E63C9-9EB3-4B75-8582-F1D0415F76CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344E63C9-9EB3-4B75-8582-F1D0415F76CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7007DC50-73DE-44EB-B4AF-EC4BD3EE8F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7007DC50-73DE-44EB-B4AF-EC4BD3EE8F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7007DC50-73DE-44EB-B4AF-EC4BD3EE8F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7007DC50-73DE-44EB-B4AF-EC4BD3EE8F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5A66888-EC6F-4481-853C-B81119AFADCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A66888-EC6F-4481-853C-B81119AFADCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A66888-EC6F-4481-853C-B81119AFADCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A66888-EC6F-4481-853C-B81119AFADCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97DC4AC-DC6D-4256-9EF9-80A42D9AB31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97DC4AC-DC6D-4256-9EF9-80A42D9AB31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97DC4AC-DC6D-4256-9EF9-80A42D9AB31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97DC4AC-DC6D-4256-9EF9-80A42D9AB31B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
