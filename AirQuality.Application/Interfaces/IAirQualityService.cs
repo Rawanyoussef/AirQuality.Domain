@@ -10,6 +10,9 @@ namespace AirQuality.Application.Interfaces
     public interface IAirQualityService
     {
         Task<AirQualitySnapshot> GetNearestCityAirQualityAsync(double lat, double lon);
+        Task<AirQualitySnapshot> GetMostPollutedParisAsync();
+        Task AddSnapshotAsync(AirQualitySnapshot snapshot);
+
 
     }
 }

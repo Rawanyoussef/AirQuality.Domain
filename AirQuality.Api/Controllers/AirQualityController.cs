@@ -25,5 +25,14 @@ namespace AirQuality.Api.Controllers
             var snapshot = await _service.GetNearestCityAirQualityAsync(lat, lon);
             return Ok(snapshot);
         }
+
+        [HttpGet("paris/most-polluted")]
+        public async Task<IActionResult> GetMostPollutedParis()
+        {
+            var snapshot = await _service.GetMostPollutedParisAsync();
+            if (snapshot == null)
+                return NotFound("No data for Paris found.");
+            return Ok(snapshot);
+        }
     }
 }
