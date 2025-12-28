@@ -11,9 +11,9 @@ namespace AirQuality.Infrastructure
 {
     public class AirQualitySnapshotRepository : IAirQualitySnapshotRepository
     {
-        private readonly AppDbContext _context;
+        private readonly AirContext _context;
 
-        public AirQualitySnapshotRepository(AppDbContext context)
+        public AirQualitySnapshotRepository(AirContext context)
         { 
             _context = context;
         }

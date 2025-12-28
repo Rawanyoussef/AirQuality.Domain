@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AirQuality.Infrastructure
 {
-   public class AppDbContext :DbContext
+   public class AirContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AirContext(DbContextOptions<AirContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

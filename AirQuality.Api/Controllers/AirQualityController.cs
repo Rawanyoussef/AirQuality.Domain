@@ -1,5 +1,6 @@
-﻿using AirQuality.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using AirQuality.Application.DTO;
+using AirQuality.Application.Interfaces;
+using AirQuality.Application.Validators;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirQuality.Api.Controllers
@@ -15,24 +16,50 @@ namespace AirQuality.Api.Controllers
             _service = service;
         }
 
-
         [HttpGet("nearest-city")]
-        public async Task<IActionResult> GetNearestCity([FromQuery] double lat, [FromQuery] double lon)
+        public async Task<IActionResult> GetNearestCity(double lat, double lon)
         {
-            if (lat < -90 || lat > 90 || lon < -180 || lon > 180)
-                return BadRequest("Invalid coordinates.");
+            // 1️⃣ Validation
+            var validator = new NearestCityRequestValidator();
+            var result = validator.Validate((lat, lon));
 
-            var snapshot = await _service.GetNearestCityAirQualityAsync(lat, lon);
-            return Ok(snapshot);
+            if (!result.IsValid)
+                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
+
+            try
+            {
+                // 2️⃣ Service call
+                var snapshot = await _service.GetNearestCityAirQualityAsync(lat, lon);
+                return Ok(snapshot);
+            }
+            catch (ApplicationException ex) // IQAir API failure
+            {
+                return StatusCode(502, ex.Message);
+            }
+            catch (Exception ex) // Unexpected server error
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
         [HttpGet("paris/most-polluted")]
         public async Task<IActionResult> GetMostPollutedParis()
         {
-            var snapshot = await _service.GetMostPollutedParisAsync();
-            if (snapshot == null)
-                return NotFound("No data for Paris found.");
-            return Ok(snapshot);
+            try
+            {
+                var snapshot = await _service.GetMostPollutedParisAsync();
+                if (snapshot == null)
+                    return NotFound("No data for Paris found.");
+                return Ok(snapshot);
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(502, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
     }
 }
