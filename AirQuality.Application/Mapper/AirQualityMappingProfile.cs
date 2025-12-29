@@ -14,7 +14,7 @@ namespace AirQuality.Application.Mapper
     {
         public AirQualityMappingProfile()
         {
-            CreateMap<AirQualityResponseDto, AirQualityResponseDto>();
+            CreateMap<AirQualitySnapshot, AirQualityResponseDto>();
             CreateMap<AirQualityResponseDto, AirQualitySnapshot>();
         }
     }

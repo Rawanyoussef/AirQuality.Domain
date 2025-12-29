@@ -35,7 +35,7 @@ namespace AirQuilty.Domain.Entitiy
                 AqiUS = aqiUS,
                 MainPollutant = mainPollutant,
                 FetchedAtUtc = timestamp,
-                RawJson = rawjson
+                RawJson = rawjson ?? "{}"
             };
         }
     }

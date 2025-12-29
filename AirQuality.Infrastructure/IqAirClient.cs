@@ -50,7 +50,8 @@ namespace AirQuality.Infrastructure
                         Country = apiData.data.country,
                         AqiUS = pollution.aqius,
                         MainPollutant = pollution.mainus,
-                        Timestamp = pollution.ts
+                        Timestamp = pollution.ts,
+                        Rawjson = response.Content
                     };
                 }
                 catch (TaskCanceledException)
