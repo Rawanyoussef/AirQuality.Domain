@@ -24,7 +24,8 @@ namespace AirQuilty.Domain.Entitiy
                  string country,
                  int aqiUS,
                  string mainPollutant,
-                 DateTime timestamp)
+                 DateTime timestamp,
+                 string rawjson)
         {
             return new AirQualitySnapshot
             {
@@ -33,7 +34,8 @@ namespace AirQuilty.Domain.Entitiy
                 Country = country,
                 AqiUS = aqiUS,
                 MainPollutant = mainPollutant,
-                FetchedAtUtc = timestamp
+                FetchedAtUtc = timestamp,
+                RawJson = rawjson
             };
         }
     }

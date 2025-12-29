@@ -1,4 +1,5 @@
-﻿using AirQuilty.Domain.Entitiy;
+﻿using AirQuality.Application.DTO;
+using AirQuilty.Domain.Entitiy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace AirQuality.Application.Interfaces
 {
     public interface IAirQualityService
     {
-        Task<AirQualitySnapshot> GetNearestCityAirQualityAsync(double lat, double lon);
-        Task<AirQualitySnapshot> GetMostPollutedParisAsync();
+        Task<AirQualityResponseDto> GetNearestCityAirQualityAsync(double lat, double lon);
+        Task<AirQualityResponseDto> GetMostPollutedParisAsync();
         Task AddSnapshotAsync(AirQualitySnapshot snapshot);
 
 

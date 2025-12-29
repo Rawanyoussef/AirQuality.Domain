@@ -20,7 +20,9 @@ namespace AirQuality.Application.Services
             country: response.Country,
             aqiUS: response.AqiUS,
             mainPollutant: response.MainPollutant,
-            timestamp: response.Timestamp
+            timestamp: response.Timestamp,
+            rawjson: response.Rawjson
+
         );
         }
 

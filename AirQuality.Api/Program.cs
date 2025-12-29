@@ -1,4 +1,5 @@
 using AirQuality.Application.Interfaces;
+using AirQuality.Application.Mapper;
 using AirQuality.Application.Services;
 using AirQuality.Infrastructure;
 using AirQuality.Infrastructure.Context;
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IAirQualityService, AirQualityService>();
 
 // Register HostedService
 builder.Services.AddHostedService<ParisAirQualityJob>();
+builder.Services.AddAutoMapper(typeof(AirQualityMappingProfile));
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -1,6 +1,7 @@
 ﻿using AirQuality.Application.DTO;
 using AirQuality.Application.Interfaces;
 using AirQuilty.Domain.Entitiy;
+using AutoMapper;
 
 namespace AirQuality.Application.Services
 {
@@ -9,28 +10,37 @@ namespace AirQuality.Application.Services
         private readonly IQAir _iqAirClient;
         private readonly IAirQualitySnapshotFactory _factory;
         private readonly IAirQualitySnapshotRepository _repository;
+        private readonly IMapper _mapper;
+
 
         public AirQualityService(
             IQAir iqAirClient,
             IAirQualitySnapshotFactory factory,
-            IAirQualitySnapshotRepository repository)
+            IAirQualitySnapshotRepository repository ,IMapper mapper)
         {
             _iqAirClient = iqAirClient;
             _factory = factory;
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<AirQualitySnapshot> GetNearestCityAirQualityAsync(double lat, double lon)
+        public async Task<AirQualityResponseDto> GetNearestCityAirQualityAsync(double lat, double lon)
         {
             var dto = await _iqAirClient.GetAirQualityAsync(lat, lon);
             var snapshot = _factory.CreateFromApiResponse(dto);
-            return snapshot;
+
+            await _repository.AddAsync(snapshot);
+
+            return _mapper.Map<AirQualityResponseDto>(snapshot);
         }
 
+        
 
-        public async Task<AirQualitySnapshot> GetMostPollutedParisAsync()
+
+        public async Task<AirQualityResponseDto> GetMostPollutedParisAsync()
         {
-            return await _repository.GetMostPollutedParisAsync();
+            var snapshot = await _repository.GetMostPollutedParisAsync();
+            return _mapper.Map<AirQualityResponseDto>(snapshot);
         }
 
 

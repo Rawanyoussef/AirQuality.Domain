@@ -15,5 +15,6 @@ namespace AirQuality.Application.DTO
         public int AqiUS { get; set; }         
         public string MainPollutant { get; set; }  
         public DateTime Timestamp { get; set; }
+        public string Rawjson { get; set; }
     }
 }

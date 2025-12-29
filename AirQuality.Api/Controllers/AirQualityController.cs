@@ -44,10 +44,10 @@ namespace AirQuality.Api.Controllers
         {
             try
             {
-                var snapshot = await _service.GetMostPollutedParisAsync();
-                if (snapshot == null)
+                var dto = await _service.GetMostPollutedParisAsync();
+                if (dto == null)
                     return NotFound("No data for Paris found.");
-                return Ok(snapshot);
+                return Ok(dto);
             }
             catch (ApplicationException ex)
             {
