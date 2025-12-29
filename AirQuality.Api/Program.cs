@@ -1,20 +1,20 @@
 using AirQuality.Application.Interfaces;
 using AirQuality.Application.Services;
 using AirQuality.Infrastructure;
-using AirQuality.Infrastructure.HostedService;
+using AirQuality.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add DbContext with correct type
+// Add DbContext
 builder.Services.AddDbContext<AirContext>(options =>
       options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register Repository
-builder.Services.AddScoped<IAirQualitySnapshotRepository, AirQualitySnapshotRepository>();
+builder.Services.AddScoped<IAirQualitySnapshotRepository,AirQualitySnapshotRepository>();
 
 // Register Factory
-builder.Services.AddScoped<IAirQualitySnapshotFactory, AirQualitySnapshotFactory>();
+builder.Services.AddScoped<IAirQualitySnapshotFactory,AirQualitySnapshotFactory>();
 
 // Register IQAir Client
 builder.Services.AddScoped<IQAir>(sp =>
@@ -24,19 +24,18 @@ builder.Services.AddScoped<IQAir>(sp =>
 });
 
 // Register Service
+// Register Service as Scoped
 builder.Services.AddScoped<IAirQualityService, AirQualityService>();
 
-// Register HostedService / Cron Job
+// Register HostedService
 builder.Services.AddHostedService<ParisAirQualityJob>();
 
-// Add Controllers & Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,5 +45,4 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

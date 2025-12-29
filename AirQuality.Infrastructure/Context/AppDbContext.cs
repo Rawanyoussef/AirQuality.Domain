@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirQuality.Infrastructure
+namespace AirQuality.Infrastructure.Context
 {
-   public class AirContext : DbContext
+    public class AirContext : DbContext
     {
         public AirContext(DbContextOptions<AirContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

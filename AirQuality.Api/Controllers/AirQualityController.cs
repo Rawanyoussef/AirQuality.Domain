@@ -19,7 +19,6 @@ namespace AirQuality.Api.Controllers
         [HttpGet("nearest-city")]
         public async Task<IActionResult> GetNearestCity(double lat, double lon)
         {
-            // 1️⃣ Validation
             var validator = new NearestCityRequestValidator();
             var result = validator.Validate((lat, lon));
 
@@ -28,20 +27,18 @@ namespace AirQuality.Api.Controllers
 
             try
             {
-                // 2️⃣ Service call
                 var snapshot = await _service.GetNearestCityAirQualityAsync(lat, lon);
                 return Ok(snapshot);
             }
-            catch (ApplicationException ex) // IQAir API failure
+            catch (ApplicationException ex) 
             {
                 return StatusCode(502, ex.Message);
             }
-            catch (Exception ex) // Unexpected server error
+            catch (Exception ex) 
             {
                 return StatusCode(500, "Internal Server Error");
             }
         }
-
         [HttpGet("paris/most-polluted")]
         public async Task<IActionResult> GetMostPollutedParis()
         {
